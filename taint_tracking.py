@@ -240,7 +240,7 @@ class TaintTracker(ExplorationTechnique):
         extra_constraints = state.inspect.added_constraints
         if not extra_constraints:
             extra_constraints = tuple()
-        concs = state.solver.any_n_int(cnt, 50, extra_constraints=extra_constraints)
+        concs = state.solver.eval_upto(cnt, 50,  extra_constraints=extra_constraints)
         return random.choice(concs)
 
     #
