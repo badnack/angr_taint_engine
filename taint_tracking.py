@@ -324,7 +324,7 @@ class TaintTracker(ExplorationTechnique):
                 name = "cnt_pt_by(" + TAINT_BUF + '[' + str(self._deref[0]) + ', ' + str(
                     self._deref[1]) + ']' + ")"
                 bits = state.inspect.mem_read_length * 8
-                if type(bits) not in (long, int) and hasattr(bits, 'symbolic'):
+                if type(bits) not in (int, ) and hasattr(bits, 'symbolic'):
                     bits = state.solver.max_int(bits)
                 var = get_sym_val(name, bits)
                 state.memory.store(state.inspect.address_concretization_result[0], var, inspect=False)
