@@ -504,7 +504,6 @@ class TaintTracker(ExplorationTechnique):
         try:
             caller_bl = self.project.factory.block(state.history.addr)
         except:
-            l.exception("lol")
             raise
         puts = [s for s in caller_bl.vex.statements if s.tag == 'Ist_Put']
 
