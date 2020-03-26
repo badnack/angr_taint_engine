@@ -7,7 +7,7 @@ import angr
 import claripy
 from angr.exploration_techniques import ExplorationTechnique
 
-from .defines import *
+from defines import *
 
 log = logging.getLogger("TaintTracking")
 log.setLevel("DEBUG")
@@ -157,10 +157,10 @@ def apply_taint(state, addr, taint_id='', bits=PAGE_SIZE, var=None):
     """
     if var is None:
         var = new_tainted_value(taint_id, bits)
-    if not (isinstance(addr, int) or isinstance(addr, long) or addr.concrete) and state.globals[SC]:
-        # FIXME: Nilo, fix this
-        raise RuntimeError("Nilo fix me!")
-        #addr = self._get_target_concretization(self, addr, state)
+    # if not (isinstance(addr, int) or addr.concrete) and state.globals[SC]:
+    #     # FIXME: Nilo, fix this
+    #     raise RuntimeError("Nilo fix me!")
+    #     #addr = self._get_target_concretization(self, addr, state)
     state.memory.store(addr, var, inspect=False, disable_actions=True)
     state.globals[TAINT_APPLIED] = True
 
